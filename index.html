@@ -6,23 +6,27 @@
 <title>育成論カード 入力フォーム</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     font-family: "Yu Gothic", "YuGothic", "Meiryo", "Hiragino Sans", sans-serif;
     background: #1a1d2e;
     color: #e0e0e0;
     min-height: 100vh;
   }
+
   .container {
     max-width: 640px;
     margin: 0 auto;
     padding: 20px 16px 40px;
   }
+
   h1 {
     text-align: center;
     font-size: 20px;
     color: #FFCA28;
     margin-bottom: 6px;
   }
+
   .subtitle {
     text-align: center;
     font-size: 12px;
@@ -37,6 +41,7 @@
     padding: 16px;
     margin-bottom: 14px;
   }
+
   .section-title {
     font-size: 13px;
     font-weight: bold;
@@ -47,22 +52,25 @@
   }
 
   /* フォーム部品 */
-  .field {
-    margin-bottom: 10px;
-  }
+  .field { margin-bottom: 10px; }
+
   .field-row {
     display: flex;
     gap: 12px;
     margin-bottom: 10px;
   }
   .field-row .field { flex: 1; margin-bottom: 0; }
+
   label {
     display: block;
     font-size: 12px;
     color: #999;
     margin-bottom: 4px;
   }
-  input[type="text"], input[type="number"], select {
+
+  input[type="text"],
+  input[type="number"],
+  select {
     width: 100%;
     padding: 8px 10px;
     background: #1a1d2e;
@@ -74,14 +82,14 @@
     outline: none;
     transition: border-color 0.2s;
   }
-  input:focus, select:focus {
-    border-color: #FFCA28;
-  }
+  input:focus, select:focus { border-color: #FFCA28; }
+
   input[type="number"] {
     text-align: center;
     -moz-appearance: textfield;
   }
   input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
   select {
     cursor: pointer;
     appearance: none;
@@ -92,7 +100,7 @@
     padding-right: 28px;
   }
 
-  /* 努力値 */
+  /* 能力ポイント */
   .ev-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -143,20 +151,22 @@
     margin-bottom: 6px;
   }
   .matchup-label.good { color: #4CAF50; }
-  .matchup-label.bad { color: #EF5350; }
+  .matchup-label.bad  { color: #EF5350; }
   .matchup-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 6px;
   }
-  .matchup-count {
+
+  /* カウント表示 */
+  .count {
     text-align: right;
     font-size: 12px;
     color: #888;
     margin-top: 6px;
   }
-  .matchup-count .num { font-weight: bold; }
-  .matchup-count.over { color: #EF5350; }
+  .count .num { font-weight: bold; }
+  .count.over { color: #EF5350; }
 
   /* 出力エリア */
   .output-section {
@@ -195,18 +205,22 @@
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
   }
-  .btn-copy:hover { background: #ffd54f; }
+  .btn-copy:hover  { background: #ffd54f; }
   .btn-copy:active { transform: scale(0.98); }
-  .btn-copy.copied {
-    background: #4CAF50;
-    color: #fff;
-  }
+  .btn-copy.copied { background: #4CAF50; color: #fff; }
 
   /* ヒント */
   .hint {
     font-size: 11px;
     color: #666;
     margin-top: 3px;
+  }
+
+  .subsection-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFCA28;
+    margin-bottom: 6px;
   }
 </style>
 </head>
@@ -274,9 +288,9 @@
     </div>
   </div>
 
-  <!-- 努力値 -->
+  <!-- 能力ポイント -->
   <div class="section">
-    <div class="section-title">努力値</div>
+    <div class="section-title">能力ポイント（各最大32・合計最大66）</div>
     <div class="ev-grid">
       <div class="ev-cell"><label>H</label><input type="number" id="evH" value="0" min="0" max="32" step="1"></div>
       <div class="ev-cell"><label>A</label><input type="number" id="evA" value="0" min="0" max="32" step="1"></div>
@@ -285,7 +299,7 @@
       <div class="ev-cell"><label>D</label><input type="number" id="evD" value="0" min="0" max="32" step="1"></div>
       <div class="ev-cell"><label>S</label><input type="number" id="evS" value="0" min="0" max="32" step="1"></div>
     </div>
-    <div class="ev-sum" id="evSum">合計: <span class="num">0</span> / 508</div>
+    <div class="ev-sum" id="evSum">合計: <span class="num">0</span> / 66</div>
   </div>
 
   <!-- 技構成 -->
@@ -293,7 +307,7 @@
     <div class="section-title">技構成（確定技＋候補技 合わせて7つまで）</div>
     <div class="hint" style="margin-bottom:8px">確定技を先に、候補技を後に入力してください</div>
 
-    <div style="font-size:13px;color:#FFCA28;font-weight:bold;margin-bottom:6px">確定技</div>
+    <div class="subsection-title">確定技</div>
     <div class="move-list" style="margin-bottom:12px">
       <div class="move-item"><span class="move-num">1.</span><input type="text" id="cm1" placeholder="技名"></div>
       <div class="move-item"><span class="move-num">2.</span><input type="text" id="cm2" placeholder="技名"></div>
@@ -301,7 +315,7 @@
       <div class="move-item"><span class="move-num">4.</span><input type="text" id="cm4" placeholder="技名"></div>
     </div>
 
-    <div style="font-size:13px;color:#FFCA28;font-weight:bold;margin-bottom:6px">候補技（最大7つ）</div>
+    <div class="subsection-title">候補技（最大7つ）</div>
     <div class="move-list">
       <div class="move-item"><span class="move-num">1.</span><input type="text" id="cd1" placeholder="技名"></div>
       <div class="move-item"><span class="move-num">2.</span><input type="text" id="cd2" placeholder="技名"></div>
@@ -312,7 +326,7 @@
       <div class="move-item"><span class="move-num">7.</span><input type="text" id="cd7" placeholder="技名"></div>
     </div>
 
-    <div class="matchup-count" id="moveCount">合計: <span class="num">0</span> / 7つ</div>
+    <div class="count" id="moveCount">合計: <span class="num">0</span> / 7つ</div>
   </div>
 
   <!-- 得意苦手 -->
@@ -339,7 +353,7 @@
       </div>
     </div>
 
-    <div class="matchup-count" id="matchupCount">合計: <span class="num">0</span> / 8体</div>
+    <div class="count" id="matchupCount">合計: <span class="num">0</span> / 8体</div>
     <div class="hint">通称OK（ウォッシュロトム、ガラルファイヤー等）</div>
   </div>
 
@@ -349,105 +363,68 @@
     <div class="output-box" id="outputBox"></div>
     <button class="btn-copy" id="btnCopy" onclick="copyOutput()">コピーする</button>
   </div>
-
 </div>
 
 <script>
-// 全入力要素を取得
-var allInputs = document.querySelectorAll('input, select');
-for (var i = 0; i < allInputs.length; i++) {
-  allInputs[i].addEventListener('input', updateOutput);
-  allInputs[i].addEventListener('change', updateOutput);
-}
+const EV_IDS     = ['evH', 'evA', 'evB', 'evC', 'evD', 'evS'];
+const CM_IDS     = ['cm1', 'cm2', 'cm3', 'cm4'];
+const CD_IDS     = ['cd1', 'cd2', 'cd3', 'cd4', 'cd5', 'cd6', 'cd7'];
+const GOOD_IDS   = ['good1', 'good2', 'good3', 'good4'];
+const BAD_IDS    = ['bad1',  'bad2',  'bad3',  'bad4'];
 
-function getVal(id) {
-  var el = document.getElementById(id);
-  return el ? el.value.trim() : '';
-}
+const getVal = id => document.getElementById(id)?.value.trim() ?? '';
+const getNum = id => parseInt(document.getElementById(id).value, 10) || 0;
+const countFilled = ids => ids.filter(id => getVal(id)).length;
+const joinList    = ids => ids.map(id => getVal(id)).filter(Boolean).join(' / ');
 
-function getNum(id) {
-  return parseInt(document.getElementById(id).value, 10) || 0;
-}
-
-function joinList(ids) {
-  var parts = [];
-  for (var i = 0; i < ids.length; i++) {
-    var v = getVal(ids[i]);
-    if (v) parts.push(v);
-  }
-  return parts.join(' / ');
+function setCount(elId, count, max, suffix) {
+  const el = document.getElementById(elId);
+  el.innerHTML = `合計: <span class="num">${count}</span> / ${max}${suffix}`;
+  el.className = el.className.replace(/\s*over/, '') + (count > max ? ' over' : '');
 }
 
 function updateOutput() {
-  // 努力値合計
-  var evIds = ['evH','evA','evB','evC','evD','evS'];
-  var evTotal = 0;
-  for (var i = 0; i < evIds.length; i++) evTotal += getNum(evIds[i]);
-  var evSumEl = document.getElementById('evSum');
-  evSumEl.innerHTML = '合計: <span class="num">' + evTotal + '</span> / 66';
+  // 能力ポイント合計
+  const evTotal = EV_IDS.reduce((sum, id) => sum + getNum(id), 0);
+  const evSumEl = document.getElementById('evSum');
+  evSumEl.innerHTML = `合計: <span class="num">${evTotal}</span> / 66`;
   evSumEl.className = evTotal > 66 ? 'ev-sum over' : 'ev-sum';
 
+  // 技合計
+  setCount('moveCount', countFilled([...CM_IDS, ...CD_IDS]), 7, 'つ');
+
   // 相性合計
-  var goodIds = ['good1','good2','good3','good4'];
-  var badIds = ['bad1','bad2','bad3','bad4'];
-  var matchCount = 0;
-  for (var g = 0; g < goodIds.length; g++) { if (getVal(goodIds[g])) matchCount++; }
-  for (var b = 0; b < badIds.length; b++) { if (getVal(badIds[b])) matchCount++; }
-  var mcEl = document.getElementById('matchupCount');
-  mcEl.innerHTML = '合計: <span class="num">' + matchCount + '</span> / 8体';
-  mcEl.className = matchCount > 8 ? 'matchup-count over' : 'matchup-count';
+  setCount('matchupCount', countFilled([...GOOD_IDS, ...BAD_IDS]), 8, '体');
 
   // テキスト生成
-  var lines = [];
-  lines.push('ポケモン名: ' + getVal('pokemonName'));
-  lines.push('型名: ' + getVal('katamei'));
-  lines.push('性格: ' + getVal('seikaku'));
-  lines.push('特性: ' + getVal('tokusei'));
-  lines.push('持ち物: ' + getVal('motimono'));
-  lines.push('テラス: ' + (getVal('teraType') || 'なし'));
-
-  var evStr = 'H' + getNum('evH') + ' A' + getNum('evA') + ' B' + getNum('evB')
-            + ' C' + getNum('evC') + ' D' + getNum('evD') + ' S' + getNum('evS');
-  lines.push('努力値: ' + evStr);
-
-  var cm = joinList(['cm1','cm2','cm3','cm4']);
-  lines.push('確定技: ' + cm);
-
-  var cd = joinList(['cd1','cd2','cd3','cd4','cd5','cd6','cd7']);
-  lines.push('候補技: ' + cd);
-
-  // 技合計カウント
-  var cmIds = ['cm1','cm2','cm3','cm4'];
-  var cdIds = ['cd1','cd2','cd3','cd4','cd5','cd6','cd7'];
-  var moveTotal = 0;
-  for (var mi = 0; mi < cmIds.length; mi++) { if (getVal(cmIds[mi])) moveTotal++; }
-  for (var mj = 0; mj < cdIds.length; mj++) { if (getVal(cdIds[mj])) moveTotal++; }
-  var mcMoveEl = document.getElementById('moveCount');
-  if (mcMoveEl) {
-    mcMoveEl.innerHTML = '合計: <span class="num">' + moveTotal + '</span> / 7つ';
-    mcMoveEl.className = moveTotal > 7 ? 'matchup-count over' : 'matchup-count';
-  }
-
-  var good = joinList(goodIds);
-  lines.push('得意: ' + good);
-
-  var bad = joinList(badIds);
-  lines.push('苦手: ' + bad);
-
+  const evStr = EV_IDS.map((id, i) => 'HABCDS'[i] + getNum(id)).join(' ');
+  const lines = [
+    `ポケモン名: ${getVal('pokemonName')}`,
+    `型名: ${getVal('katamei')}`,
+    `性格: ${getVal('seikaku')}`,
+    `特性: ${getVal('tokusei')}`,
+    `持ち物: ${getVal('motimono')}`,
+    `テラス: ${getVal('teraType') || 'なし'}`,
+    `能力ポイント: ${evStr}`,
+    `確定技: ${joinList(CM_IDS)}`,
+    `候補技: ${joinList(CD_IDS)}`,
+    `得意: ${joinList(GOOD_IDS)}`,
+    `苦手: ${joinList(BAD_IDS)}`,
+  ];
   document.getElementById('outputBox').textContent = lines.join('\n');
 
   // コピーボタンリセット
-  var btn = document.getElementById('btnCopy');
+  const btn = document.getElementById('btnCopy');
   btn.textContent = 'コピーする';
   btn.className = 'btn-copy';
 }
 
 function copyOutput() {
-  var text = document.getElementById('outputBox').textContent;
+  const text = document.getElementById('outputBox').textContent;
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(function() { showCopied(); });
+    navigator.clipboard.writeText(text).then(showCopied);
   } else {
-    var ta = document.createElement('textarea');
+    const ta = document.createElement('textarea');
     ta.value = text;
     document.body.appendChild(ta);
     ta.select();
@@ -458,16 +435,20 @@ function copyOutput() {
 }
 
 function showCopied() {
-  var btn = document.getElementById('btnCopy');
+  const btn = document.getElementById('btnCopy');
   btn.textContent = 'コピーしました!';
   btn.className = 'btn-copy copied';
-  setTimeout(function() {
+  setTimeout(() => {
     btn.textContent = 'コピーする';
     btn.className = 'btn-copy';
   }, 2000);
 }
 
-// 初期表示
+document.querySelectorAll('input, select').forEach(el => {
+  el.addEventListener('input', updateOutput);
+  el.addEventListener('change', updateOutput);
+});
+
 updateOutput();
 </script>
 
