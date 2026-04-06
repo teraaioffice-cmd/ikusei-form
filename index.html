@@ -278,12 +278,12 @@
   <div class="section">
     <div class="section-title">努力値</div>
     <div class="ev-grid">
-      <div class="ev-cell"><label>H</label><input type="number" id="evH" value="0" min="0" max="252" step="4"></div>
-      <div class="ev-cell"><label>A</label><input type="number" id="evA" value="0" min="0" max="252" step="4"></div>
-      <div class="ev-cell"><label>B</label><input type="number" id="evB" value="0" min="0" max="252" step="4"></div>
-      <div class="ev-cell"><label>C</label><input type="number" id="evC" value="0" min="0" max="252" step="4"></div>
-      <div class="ev-cell"><label>D</label><input type="number" id="evD" value="0" min="0" max="252" step="4"></div>
-      <div class="ev-cell"><label>S</label><input type="number" id="evS" value="0" min="0" max="252" step="4"></div>
+      <div class="ev-cell"><label>H</label><input type="number" id="evH" value="0" min="0" max="66" step="4"></div>
+      <div class="ev-cell"><label>A</label><input type="number" id="evA" value="0" min="0" max="66" step="4"></div>
+      <div class="ev-cell"><label>B</label><input type="number" id="evB" value="0" min="0" max="66" step="4"></div>
+      <div class="ev-cell"><label>C</label><input type="number" id="evC" value="0" min="0" max="66" step="4"></div>
+      <div class="ev-cell"><label>D</label><input type="number" id="evD" value="0" min="0" max="66" step="4"></div>
+      <div class="ev-cell"><label>S</label><input type="number" id="evS" value="0" min="0" max="66" step="4"></div>
     </div>
     <div class="ev-sum" id="evSum">合計: <span class="num">0</span> / 508</div>
   </div>
@@ -384,8 +384,8 @@ function updateOutput() {
   var evTotal = 0;
   for (var i = 0; i < evIds.length; i++) evTotal += getNum(evIds[i]);
   var evSumEl = document.getElementById('evSum');
-  evSumEl.innerHTML = '合計: <span class="num">' + evTotal + '</span> / 508';
-  evSumEl.className = evTotal > 510 ? 'ev-sum over' : 'ev-sum';
+  evSumEl.innerHTML = '合計: <span class="num">' + evTotal + '</span> / 396';
+  evSumEl.className = evTotal > 396 ? 'ev-sum over' : 'ev-sum';
 
   // 相性合計
   var goodIds = ['good1','good2','good3','good4'];
